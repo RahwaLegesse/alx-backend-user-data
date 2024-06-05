@@ -22,7 +22,7 @@ def not_found(error) -> str:
 
 @app.errorhandler(401)
 def unautherized(error) ->tupler[str, Literal(401)]:
-    """ unautherized
+    """ unautherized nnn
     """
     return jsonify({"error": "unautherized"}), 401
 
