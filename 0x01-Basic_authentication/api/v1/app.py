@@ -2,23 +2,17 @@
 """
 Route module for the API
 """
-
-
-import os
 from os import getenv
-from typing import Tuple
-
-from flask import Flask, abort, jsonify, request
-from flask_cors import CORS, cross_origin
-
-from api.v1.auth.auth import Auth
-from api.v1.auth.basic_auth import BasicAuth
 from api.v1.views import app_views
+from flask import Flask, jsonify, abort, request
+from flask_cors import (CORS, cross_origin)
+import os
 from typing import Literal
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:
@@ -26,22 +20,15 @@ def not_found(error) -> str:
     """
     return jsonify({"error": "Not found"}), 404
 
-
 @app.errorhandler(401)
-def unauthorized(error) -> Tuple[str, Literal[401]:
-    """Error handler for unauthorized requests.
-
-    Args:
-        error (Exception): The error raised.
-
-    Returns:
-        Tuple[jsonify, int]: JSON response with the error message and a 401
-        status code.
+def unautherized(error) ->tupler[str, Literal(401)]:
+    """ unautherized
     """
-    return jsonify({"error": "Unauthorized"}), 401
+    return jsonify({"error": "unautherized"}), 401
 
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
     port = getenv("API_PORT", "5000")
-    app.run(host=host, port=port, debug=True)
+    app.run(host=host, port=port)
+
