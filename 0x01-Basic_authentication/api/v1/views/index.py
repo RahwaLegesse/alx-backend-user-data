@@ -14,16 +14,11 @@ def status() -> str:
     return jsonify({"status": "OK"})
 
 
-@app_views.route('/stats/', strict_slashes=False)
-def stats() -> str:
-    """ GET /api/v1/stats
-    Return:
-      - the number of each objects
+@app_views.route('/unauthorized/', strict_slashes=False, methods=['GET'])
+def unauthorized_endpoint() -> None:
+    """Endpoint that raises a 401 error.
+
+    Returns:
+        None: None.
     """
-    from models.user import User
-    stats = {}
-    stats['users'] = User.count()
-    return jsonify(stats)
-@app.route('/api/v1/unauthorized', methods=['GET'])
-def unauthorized_endpoint():
     abort(401)
