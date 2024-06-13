@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Authentication Module """
+""" Auth Module """
 
 import bcrypt
 from db import DB
@@ -29,7 +29,7 @@ class Auth:
         self._db = DB()
 
     def register_user(self, email: str, password: str) -> User:
-        """ Registers a user in the database
+        """ Registers the database
         Returns: User Object
         """
 
@@ -73,7 +73,7 @@ class Auth:
         return session_id
 
     def get_user_from_session_id(self, session_id: str) -> Union[str, None]:
-        """It takes a single session_id string argument
+        """It session_id string argument
         Returns a string or None
         """
         if session_id is None:
@@ -87,7 +87,7 @@ class Auth:
         return user
 
     def destroy_session(self, user_id: int) -> None:
-        """Updates the corresponding user's session ID to None"""
+        """Updates  to None"""
         try:
             user = self._db.find_user_by(id=user_id)
         except NoResultFound:
@@ -98,7 +98,7 @@ class Auth:
         return None
 
     def get_reset_password_token(self, email: str) -> str:
-        """Generates a reset password token if user exists"""
+        """Generates"""
         try:
             user = self._db.find_user_by(email=email)
         except NoResultFound:
@@ -111,7 +111,7 @@ class Auth:
         return reset_token
 
     def update_password(self, reset_token: str, password: str) -> None:
-        """Uses reset token to validate update of users password"""
+        """Uses e of users password"""
         if reset_token is None or password is None:
             return None
 

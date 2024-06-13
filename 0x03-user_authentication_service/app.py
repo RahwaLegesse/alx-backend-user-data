@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Route module for basic flask app API
+"""route module
 """
 
 from db import DB
@@ -23,8 +23,8 @@ def welcome() -> str:
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def users() -> str:
-    """POST /users, JSON: -email, -password
-    Returns end-point to register a user
+    """POST: -email, -password
+    Returns end-point to 
     """
     email = request.form.get('email')
     password = request.form.get('password')
@@ -37,8 +37,8 @@ def users() -> str:
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login():
-    """POST /sessions, - email, - password
-    Returns request with form data with email and password fields
+    """POSTpassword
+    Returnsmail and password fields
     """
     user_request = request.form
     user_email = user_request.get('email', '')
@@ -54,9 +54,9 @@ def login():
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def logout():
-    """DELETE /sessions, - session_id
-    Find user with requested session ID, if exists, destroy session
-    Redirect user to GET /, if doesnt exists, respond with 403 HTTP
+    """DELET- session_id
+    Findsession ID, if exists, destroy session
+    Redirectif doesnt exists, respond with 403 HTTP
     status
     """
     user_cookie = request.cookies.get("session_id", None)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DB Module
+"""Data Base Module
 """
 
 from sqlalchemy import create_engine
@@ -15,7 +15,7 @@ class DB:
     """
 
     def __init__(self):
-        """Initializes a new DB instance
+        """Initializes
         """
         self._engine = create_engine("sqlite:///a.db", echo=False)
         Base.metadata.drop_all(self._engine)
@@ -24,7 +24,7 @@ class DB:
 
     @property
     def _session(self):
-        """Private memoized session method (object)
+        """Private
         Never used outside DB class
         """
         if self.__session is None:
@@ -42,7 +42,7 @@ class DB:
         return user
 
     def find_user_by(self, **kwargs) -> User:
-        """Returns first rrow found in users table
+        """Returns
         as filtered by methods input arguments
         """
         user_keys = ['id', 'email', 'hashed_password', 'session_id',
@@ -56,9 +56,7 @@ class DB:
         return result
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        """Use find_user_by to locate the user to update
-        Update user's attribute as passed in methods argument
-        Commit changes to database
+        """Use find_user_by
         Raises ValueError if argument does not correspond to user
         attribute passed
         """

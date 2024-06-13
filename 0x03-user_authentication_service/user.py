@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Create a SQLAlchemy model named `User`
-for database table named `users`
+Create a model named `User`
 """
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -12,8 +11,8 @@ Base = declarative_base()
 
 
 class User(Base):
-    """ SQLAlchemy model named User
-    for database table named users
+    """ SQLAlchemy
+    for named users
     """
     __tablename__ = 'users'
 
